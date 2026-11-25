@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Кейсы — Александр Бурнашев</title>
+  <meta name="description" content="Кейсы CRM-маркетолога: рассылки из CRM, ИИ-помощник, оркестратор контента." />
+  <!-- TILDA: загрузить картинки и заменить пути assets/ на URL Tilda -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --bg-elev: #12151a;
+      --surface: #161a21;
+      --ink: #eef2f7;
+      --muted: #9aa6b5;
+      --line: #2a3140;
+      --blue: #5b9cff;
+      --blue-deep: #3b82f6;
+      --blue-soft: rgba(91, 156, 255, 0.12);
+      --radius: 14px;
+      --max: 1080px;
+      --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: var(--font); color: var(--ink);
+      background: var(--bg); line-height: 1.55; -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(11, 13, 16, 0.88); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.9rem 0; flex-wrap: wrap;
+    }
+    .brand { font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+    .brand span { display: block; font-weight: 500; font-size: 0.78rem; color: var(--muted); }
+    .nav { display: flex; flex-wrap: wrap; gap: 0.7rem 1.05rem; align-items: center; }
+    .nav a { color: var(--muted); font-size: 0.92rem; font-weight: 500; text-decoration: none; }
+    .nav a:hover { color: var(--ink); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.65rem 1.1rem; border-radius: 999px;
+      background: var(--blue-deep); color: #fff !important;
+      font-weight: 600; font-size: 0.92rem; text-decoration: none !important;
+      border: 1px solid transparent;
+    }
+    .btn:hover { background: #2563eb; }
+    .btn-ghost {
+      background: transparent; color: var(--ink) !important; border: 1px solid var(--line);
+    }
+    .btn-ghost:hover {
+      background: #eef2f7;
+      border-color: #eef2f7;
+      color: #0b0d10 !important;
+    }
+
+    .page-intro { padding: 2.75rem 0 1.25rem; }
+    .page-intro .kicker {
+      margin: 0 0 0.45rem; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue);
+    }
+    .page-intro h1 {
+      margin: 0 0 0.55rem; font-size: clamp(1.75rem, 3.6vw, 2.5rem); letter-spacing: -0.03em;
+    }
+    .page-intro p { margin: 0; color: var(--muted); max-width: 38rem; }
+
+    /* Index of cases — like #10 list */
+    .case-nav { padding: 0 0 2.5rem; }
+    .case-nav-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+    .case-nav-list li {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.1rem 1.2rem;
+    }
+    .case-nav-list a {
+      font-weight: 600; color: var(--ink); text-decoration: none; font-size: 1.05rem;
+    }
+    .case-nav-list a:hover { color: var(--blue); }
+    .case-nav-list p { margin: 0.4rem 0 0; color: var(--muted); font-size: 0.93rem; }
+    .case-nav-metrics {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem;
+    }
+    .pill {
+      font-size: 0.72rem; font-weight: 600; color: var(--blue);
+      background: var(--blue-soft); border: 1px solid rgba(91,156,255,0.22);
+      padding: 0.22rem 0.55rem; border-radius: 999px;
+    }
+
+    /* About with photo */
+    .about-compact {
+      padding: 2rem 0 2.75rem; border-block: 1px solid var(--line); background: var(--bg-elev);
+    }
+    .about-grid { display: grid; gap: 1.25rem; align-items: center; }
+    @media (min-width: 720px) {
+      .about-grid { grid-template-columns: 140px 1fr 180px; gap: 1.5rem; }
+    }
+    .about-photo {
+      width: 140px; height: 140px; border-radius: 50%; overflow: hidden;
+      border: 2px solid var(--line); margin: 0 auto;
+    }
+    @media (min-width: 720px) { .about-photo { margin: 0; } }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .about-compact h2 { margin: 0 0 0.45rem; font-size: 1.3rem; }
+    .about-compact p { margin: 0; color: var(--muted); }
+    .about-thumb {
+      display: none; border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--line); aspect-ratio: 4 / 3;
+    }
+    @media (min-width: 720px) { .about-thumb { display: block; } }
+    .about-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Case blocks — Situation / Task / Result like #10 + metrics like #9 */
+    .case-block {
+      padding: 3.1rem 0; border-bottom: 1px solid var(--line);
+    }
+    .case-block:last-of-type { border-bottom: none; }
+    .case-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1rem;
+    }
+    .case-head h2 {
+      margin: 0; font-size: clamp(1.3rem, 2.3vw, 1.7rem); letter-spacing: -0.02em; max-width: 40rem;
+    }
+    .case-num {
+      flex-shrink: 0; font-size: 0.8rem; font-weight: 700; color: var(--blue);
+      letter-spacing: 0.06em; padding-top: 0.35rem;
+    }
+    .metric-row {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1.35rem;
+    }
+    .metric {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 10px; padding: 0.55rem 0.8rem; min-width: 7rem;
+    }
+    .metric strong { display: block; font-size: 0.98rem; letter-spacing: -0.02em; }
+    .metric span { font-size: 0.7rem; color: var(--muted); }
+
+    .case-panels { display: grid; gap: 0.85rem; }
+    @media (min-width: 720px) { .case-panels { grid-template-columns: 1fr 1fr; } }
+    .panel {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.15rem 1.2rem;
+    }
+    .panel.full { grid-column: 1 / -1; }
+    .panel h3 {
+      margin: 0 0 0.55rem; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--blue);
+    }
+    .panel p { margin: 0 0 0.7rem; color: var(--muted); font-size: 0.95rem; }
+    .panel p:last-child { margin-bottom: 0; }
+    .panel .role {
+      margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px solid var(--line);
+      font-size: 0.9rem; color: var(--ink);
+    }
+
+    .shot-grid { display: grid; gap: 0.75rem; margin-top: 1.35rem; }
+    @media (min-width: 640px) {
+      .shot-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+      .shot-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+      .shot-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .shot-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    }
+    .shot {
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+      background: #1a1f28;
+    }
+    .shot img { width: 100%; height: auto; }
+    .shot.phone img { width: 100%; max-height: 420px; object-fit: cover; object-position: top; }
+    .shot-note { margin: 0.7rem 0 0; font-size: 0.82rem; color: var(--muted); }
+
+    .cta-band {
+      margin: 1rem 0 3.25rem;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: 18px; padding: 1.5rem 1.35rem;
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      align-items: center; justify-content: space-between;
+    }
+    .cta-band h2 { margin: 0 0 0.3rem; font-size: 1.3rem; }
+    .cta-band p { margin: 0; color: var(--muted); }
+    .site-footer {
+      border-top: 1px solid var(--line); padding: 1.2rem 0 2rem;
+      color: var(--muted); font-size: 0.82rem; text-align: center;
+    }
+    .site-footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        Александр Бурнашев
+        <span>CRM-маркетолог</span>
+      </a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="index.html">Главная</a>
+        <a href="#case-nav">Кейсы</a>
+        <a href="#about">Обо мне</a>
+        <a class="btn" href="https://t.me/Str1v1ng" target="_blank" rel="noopener">Написать в Telegram</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap page-intro">
+    <p class="kicker">Case studies</p>
+    <h1>Кейсы</h1>
+    <p>Три проекта по CRM, рассылкам и ИИ. Названия компаний не указываю — фокус на задаче, роли и результате.</p>
+  </div>
+
+  <section id="case-nav" class="case-nav">
+    <div class="wrap">
+      <ol class="case-nav-list">
+        <li>
+          <a href="#case-1">01 · Рассылки из CRM в мессенджеры</a>
+          <p>Автоматизация через Google Таблицы + amoCRM за 20 месяцев работы инструмента.</p>
+          <div class="case-nav-metrics">
+            <span class="pill">1%→5% холодные</span>
+            <span class="pill">7%→18% тёплые</span>
+            <span class="pill">~67 ₽/ответ</span>
+          </div>
+        </li>
+        <li>
+          <a href="#case-2">02 · ИИ-помощник в CRM</a>
+          <p>Ответы на типовые и нерабочие часы, квалификация и передача менеджеру.</p>
+          <div class="case-nav-metrics">
+            <span class="pill">~−30 ч/мес</span>
+            <span class="pill">~1 из 28 ошибок</span>
+          </div>
+        </li>
+        <li>
+          <a href="#case-3">03 · ИИ-оркестратор контента</a>
+          <p>Конвейер статей под SEO: текст, изображение, публикация.</p>
+          <div class="case-nav-metrics">
+            <span class="pill">~70 ₽/статья</span>
+            <span class="pill">вместо ~1500 ₽</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="about" class="about-compact">
+    <div class="wrap about-grid">
+      <div class="about-photo">
+        <img src="assets/photos/about.jpg" alt="Александр Бурнашев" width="280" height="280" />
+      </div>
+      <div>
+        <h2>Обо мне</h2>
+        <p>
+          CRM-маркетолог: воронки, рассылки, аналитика и ИИ-автоматизация в B2B/B2C.
+          Стек — amoCRM, Roistat, Метрика, Excel/Power BI, Tilda, базовый HTML.
+          Подробнее — на <a href="index.html">главной</a>.
+        </p>
+      </div>
+      <div class="about-thumb">
+        <img src="assets/photos/skill-desk.jpg" alt="Рабочий стол с аналитикой" width="360" height="270" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE 1 -->
+  <section id="case-1" class="case-block">
+    <div class="wrap">
+      <div class="case-head">
+        <h2>Рассылки из CRM в мессенджеры</h2>
+        <span class="case-num">01</span>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><strong>1%→5%</strong><span>холодная база</span></div>
+        <div class="metric"><strong>7%→18%</strong><span>тёплая база</span></div>
+        <div class="metric"><strong>~67 ₽</strong><span>стоимость ответа</span></div>
+        <div class="metric"><strong>20 мес.</strong><span>окно замера</span></div>
+      </div>
+
+      <div class="case-panels">
+        <div class="panel">
+          <h3>Задача</h3>
+          <p>
+            Не хватало нормальной автоматизации рассылок в связке с amoCRM:
+            сегменты, частоты и движение лидов по воронке приходилось держать вручную.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Решение</h3>
+          <p>
+            Собрал роботизацию на Google Таблицах: оттуда запускались скрипты в CRM.
+            Скрипты и подключение к amoCRM делал разработчик по моему ТЗ.
+            Каналы — WA (WABA), затем Telegram и MAX. Сегменты, частоты, задачи
+            и перемещения по воронкам; тексты и ТЗ дизайнеру — мои, утверждение —
+            главы продаж и маркетинга.
+          </p>
+          <p>
+            Бюджет на рассылки — от 30 тыс. ₽/мес.
+          </p>
+          <p class="role">
+            <strong>Роль:</strong> идея — глава отдела + обсуждение со мной и разработчиком.
+            Логику и таблицу вёл я; код/подключение — разработчик. Картинки до массового ИИ — дизайнеры.
+          </p>
+        </div>
+      </div>
+
+      <div class="shot-grid cols-4">
+        <!-- TILDA: URL файлов *Изм из assets/redacted -->
+        <figure class="shot phone">
+          <img src="assets/redacted/1рассылкаИзм.jpg" alt="Автоответ в мессенджере" loading="lazy" />
+        </figure>
+        <figure class="shot phone">
+          <img src="assets/redacted/2рассылкаИзм.jpg" alt="Рассылка с медиа и кнопками" loading="lazy" />
+        </figure>
+        <figure class="shot phone">
+          <img src="assets/redacted/3рассылкаИзм.jpg" alt="Текст рассылки в мессенджере" loading="lazy" />
+        </figure>
+        <figure class="shot phone">
+          <img src="assets/redacted/4рассылкаИзм.jpg" alt="Рассылка с кнопками Да/Нет" loading="lazy" />
+        </figure>
+        <figure class="shot phone">
+          <img src="assets/redacted/5рассылкаИзм.jpg" alt="Сообщение вне рабочего времени" loading="lazy" />
+        </figure>
+        <figure class="shot phone">
+          <img src="assets/redacted/6рассылкаИзм.jpg" alt="Диалог прогрева и быстрые ответы" loading="lazy" />
+        </figure>
+        <figure class="shot phone">
+          <img src="assets/redacted/7рассылкаИзм.jpg" alt="Сценарий рассылки в мессенджере" loading="lazy" />
+        </figure>
+        <figure class="shot phone">
+          <img src="assets/redacted/8рассылкаИзм.jpg" alt="Сценарий рассылки в мессенджере" loading="lazy" />
+        </figure>
+      </div>
+      <p class="shot-note">Скриншоты обезличены вручную: логотипы и название компании скрыты.</p>
+    </div>
+  </section>
+
+  <!-- CASE 2 -->
+  <section id="case-2" class="case-block">
+    <div class="wrap">
+      <div class="case-head">
+        <h2>ИИ-помощник в CRM</h2>
+        <span class="case-num">02</span>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><strong>~−30 ч/мес</strong><span>нагрузка менеджеров</span></div>
+        <div class="metric"><strong>~1 из 28</strong><span>ошибка в ответах</span></div>
+        <div class="metric"><strong>≤8%</strong><span>погрешность оценки</span></div>
+      </div>
+
+      <div class="case-panels">
+        <div class="panel">
+          <h3>Задача</h3>
+          <p>
+            Высокая нагрузка на менеджеров: ночные заявки, заявки выходного дня
+            и поток типовых вопросов о продуктах.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Решение</h3>
+          <p>
+            Собрал роботизацию CRM с ИИ-помощником: ответы, квалификация заявки
+            и передача менеджеру. Подключение к CRM — осуществил разработчик по моему ТЗ;
+            сценарии и логику автоматизации вёл я.
+          </p>
+          <p>
+            На старте были галлюцинации модели и введение клиентов в заблуждение —
+            отдельно отрабатывал, пока ошибка не снизилась до ~1 из 28.
+            Часы считал по сделкам несколько дней.
+          </p>
+          <p class="role">
+            <strong>Роль:</strong> вся роботизация CRM↔ИИ — я; интеграция в CRM — разработчик по ТЗ.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE 3 -->
+  <section id="case-3" class="case-block">
+    <div class="wrap">
+      <div class="case-head">
+        <h2>ИИ-оркестратор контента</h2>
+        <span class="case-num">03</span>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><strong>~70 ₽</strong><span>себестоимость статьи</span></div>
+        <div class="metric"><strong>~1500 ₽</strong><span>было у копирайтера</span></div>
+        <div class="metric"><strong>400+</strong><span>материалов вручную до</span></div>
+      </div>
+
+      <div class="case-panels">
+        <div class="panel">
+          <h3>Задача</h3>
+          <p>
+            Для SEO нужно было много статей, времени не хватало. Одна статья у копирайтера —
+            около 1500 ₽; дорого при цели порядка 500 материалов.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Решение</h3>
+          <p>
+            Собрал оркестратор на ИИ-агентах end-to-end: текст, изображение и публикация.
+            Всю систему сделал самостоятельно. Со стороны бизнеса участие было только в чате:
+            человек утверждал макеты и говорил «делаем / не делаем» — без ручной сборки контента.
+          </p>
+          <p>
+            Система рассчитана на массовый выпуск: можно запускать сразу десятки материалов
+            за один прогон (например, около 30 статей). Каналы: сайт, TenChat, Дзен, VK.
+            Замера эффекта по трафику и заявкам не было — в кейсе только себестоимость
+            и факт запуска конвейера.
+          </p>
+          <p class="role">
+            <strong>Роль:</strong> end-to-end — самостоятельно.
+          </p>
+        </div>
+      </div>
+
+      <div class="shot-grid cols-2">
+        <figure class="shot">
+          <img src="assets/redacted/1статьяИзм.jpg" alt="Пример статьи" loading="lazy" />
+        </figure>
+        <figure class="shot">
+          <img src="assets/redacted/2статьяИзм.jpg" alt="Пример статьи" loading="lazy" />
+        </figure>
+        <figure class="shot">
+          <img src="assets/redacted/3статьяИзм.jpg" alt="Сетка опубликованных статей" loading="lazy" />
+        </figure>
+        <figure class="shot">
+          <img src="assets/redacted/4статьяИзм.jpg" alt="Карточки статей на сайте" loading="lazy" />
+        </figure>
+      </div>
+      <p class="shot-note">Логотипы, название компании и имена авторов скрыты вручную.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2>Обсудим похожие задачи</h2>
+        <p>Напишите в Telegram — разберём, что можно автоматизировать.</p>
+      </div>
+      <a class="btn" href="https://t.me/Str1v1ng" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a href="index.html">← На главную</a>
+      · © Александр Бурнашев
+    </div>
+  </footer>
+</body>
+</html>

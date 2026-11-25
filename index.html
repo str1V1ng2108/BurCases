@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Александр Бурнашев — CRM-маркетолог</title>
+  <meta name="description" content="CRM-маркетолог: автоматизация воронок, рассылки, аналитика и ИИ в B2B. Написать в Telegram." />
+  <!-- TILDA: загрузить картинки в файловый менеджер и заменить пути assets/ на URL Tilda -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --bg-elev: #12151a;
+      --surface: #161a21;
+      --ink: #eef2f7;
+      --muted: #9aa6b5;
+      --line: #2a3140;
+      --blue: #5b9cff;
+      --blue-deep: #3b82f6;
+      --blue-soft: rgba(91, 156, 255, 0.12);
+      --radius: 14px;
+      --max: 1080px;
+      --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(11, 13, 16, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.9rem 0; flex-wrap: wrap;
+    }
+    .brand {
+      font-weight: 700; color: var(--ink); text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .brand span { display: block; font-weight: 500; font-size: 0.78rem; color: var(--muted); }
+    .nav { display: flex; flex-wrap: wrap; gap: 0.7rem 1.05rem; align-items: center; }
+    .nav a { color: var(--muted); font-size: 0.92rem; font-weight: 500; text-decoration: none; }
+    .nav a:hover { color: var(--ink); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.65rem 1.1rem; border-radius: 999px;
+      background: var(--blue-deep); color: #fff !important;
+      font-weight: 600; font-size: 0.92rem; text-decoration: none !important;
+      border: 1px solid transparent;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .btn:hover { background: #2563eb; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink) !important;
+      border-color: var(--line);
+    }
+    .btn-ghost:hover {
+      background: #eef2f7;
+      border-color: #eef2f7;
+      color: #0b0d10 !important;
+    }
+
+    /* Hero: photo + copy like #9, dark like #10 */
+    .hero { padding: 3.25rem 0 2.75rem; }
+    .hero-grid {
+      display: grid; gap: 2rem; align-items: center;
+    }
+    @media (min-width: 860px) {
+      .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 2.75rem; }
+    }
+    .eyebrow {
+      display: inline-flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .eyebrow span {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--blue); background: var(--blue-soft);
+      padding: 0.28rem 0.65rem; border-radius: 999px;
+    }
+    .hero h1 {
+      margin: 0 0 0.9rem;
+      font-size: clamp(1.9rem, 4.2vw, 2.85rem);
+      line-height: 1.12; letter-spacing: -0.035em; font-weight: 700;
+    }
+    .hero .lead {
+      margin: 0 0 1.35rem; color: var(--muted); font-size: 1.05rem; max-width: 34rem;
+    }
+    .metric-row {
+      display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 0 0 1.4rem;
+    }
+    .metric {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 10px; padding: 0.55rem 0.8rem; min-width: 7.5rem;
+    }
+    .metric strong { display: block; font-size: 1rem; color: var(--ink); letter-spacing: -0.02em; }
+    .metric span { font-size: 0.72rem; color: var(--muted); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+
+    .hero-photo {
+      position: relative; border-radius: 18px; overflow: hidden;
+      border: 1px solid var(--line); background: var(--bg-elev);
+      aspect-ratio: 4 / 5; max-width: 420px; margin-inline: auto;
+    }
+    @media (min-width: 860px) { .hero-photo { margin-inline: 0 0 auto; max-width: none; } }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-photo::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(11,13,16,0.55) 100%);
+      pointer-events: none;
+    }
+
+    section { padding: 3.4rem 0; }
+    .section-head { margin-bottom: 1.6rem; max-width: 40rem; }
+    .section-kicker {
+      margin: 0 0 0.4rem; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue);
+    }
+    .section-head h2 {
+      margin: 0 0 0.45rem; font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      letter-spacing: -0.025em;
+    }
+    .section-head p { margin: 0; color: var(--muted); }
+    .section-head .section-sub {
+      margin: 0.35rem 0 0;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .skills-grid { display: grid; gap: 0.85rem; }
+    @media (min-width: 640px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .skills-grid { grid-template-columns: repeat(3, 1fr); } }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.15rem 1.2rem;
+    }
+    .skill-card h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+    .skill-card p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+
+    .band { background: var(--bg-elev); border-block: 1px solid var(--line); }
+    .qualities-list { display: grid; gap: 0.85rem; }
+    @media (min-width: 700px) { .qualities-list { grid-template-columns: repeat(2, 1fr); } }
+    .quality-item {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.15rem 1.2rem;
+    }
+    .quality-item strong { display: block; margin-bottom: 0.35rem; color: var(--ink); }
+    .quality-item p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+
+    /* About with photo */
+    .about-grid {
+      display: grid; gap: 1.5rem; align-items: center;
+    }
+    @media (min-width: 800px) {
+      .about-grid { grid-template-columns: minmax(220px, 320px) 1fr; gap: 2.5rem; }
+    }
+    .about-visual { display: grid; gap: 0.75rem; }
+    .about-photo {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--line); aspect-ratio: 3 / 4; background: #1a1f28;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .about-side {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--line); aspect-ratio: 16 / 10; background: #1a1f28;
+    }
+    .about-side img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text p { color: var(--muted); margin: 0 0 0.95rem; }
+    .about-text p:last-of-type { margin-bottom: 0; }
+    .about-cta {
+      margin: 1.15rem 0;
+    }
+    .stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; }
+    .chip {
+      font-size: 0.78rem; padding: 0.28rem 0.6rem; border-radius: 999px;
+      background: var(--blue-soft); color: var(--blue); font-weight: 500;
+      border: 1px solid rgba(91, 156, 255, 0.25);
+    }
+
+    /* Preview cases strip */
+    .cases-preview { display: grid; gap: 0.75rem; }
+    .case-teaser {
+      display: grid; gap: 0.35rem 1rem; align-items: baseline;
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.1rem 1.2rem;
+      text-decoration: none; color: inherit;
+      transition: border-color 0.15s ease;
+    }
+    .case-teaser:hover { border-color: var(--blue); text-decoration: none; }
+    .case-teaser .num { font-size: 0.75rem; color: var(--blue); font-weight: 600; letter-spacing: 0.06em; }
+    .case-teaser h3 { margin: 0; font-size: 1.05rem; color: var(--ink); }
+    .case-teaser p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    @media (min-width: 720px) {
+      .case-teaser { grid-template-columns: 2.5rem 1fr; }
+      .case-teaser .num { grid-row: 1 / span 2; padding-top: 0.2rem; }
+    }
+
+    .contact { padding-bottom: 3.5rem; }
+    .contact-card {
+      background: linear-gradient(160deg, #151a22 0%, #10141b 100%);
+      border: 1px solid var(--line); border-radius: 18px; padding: 1.75rem 1.5rem;
+    }
+    .contact-card h2 { margin: 0 0 0.45rem; font-size: 1.45rem; }
+    .contact-card > p { margin: 0 0 1.2rem; color: var(--muted); }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 1.1rem; }
+    .contact-links { display: grid; gap: 0.4rem; font-size: 0.95rem; }
+    .contact-links a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    .site-footer {
+      border-top: 1px solid var(--line); padding: 1.2rem 0 2rem;
+      color: var(--muted); font-size: 0.82rem; text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        Александр Бурнашев
+        <span>CRM-маркетолог</span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#skills">Навыки</a>
+        <a href="#qualities">Качества</a>
+        <a href="#about">Обо мне</a>
+        <!-- TILDA: заменить на URL страницы кейсов -->
+        <a href="cases.html">Кейсы</a>
+        <a class="btn" href="https://t.me/Str1v1ng" target="_blank" rel="noopener">Написать в Telegram</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span>Удалённо</span>
+          <span>B2B / B2C</span>
+          <span>amoCRM</span>
+        </div>
+        <h1>Строю системы, в которых видно, где воронка теряет деньги</h1>
+        <p class="lead">
+          CRM-маркетолог с упором на автоматизацию воронок, аналитику и измеримые процессы.
+          Могу и у вас в компании сделать также:
+        </p>
+        <div class="metric-row">
+          <div class="metric"><strong>1%→5%</strong><span>холодные ответы</span></div>
+          <div class="metric"><strong>~−30 ч/мес</strong><span>нагрузка менеджеров</span></div>
+          <div class="metric"><strong>~70 ₽</strong><span>статья вместо 1500 ₽</span></div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://t.me/Str1v1ng" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a class="btn btn-ghost" href="cases.html">Смотреть кейсы</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <!-- TILDA: about-фото (DSC_7137) -->
+        <img src="assets/photos/about.jpg" alt="Александр Бурнашев" width="680" height="850" />
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-kicker">Toolkit</p>
+        <h2>Hard skills</h2>
+        <p>Стек и задачи, с которыми работаю каждый день — без прогресс-баров, только суть.</p>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card">
+          <h3>CRM и интеграции</h3>
+          <p>amoCRM, RetailCRM, YClients: воронки, сценарии, связка сайта и мессенджеров, поддержка при падениях и правки</p>
+        </article>
+        <article class="skill-card">
+          <h3>Рассылки в мессенджеры</h3>
+          <p>Сегменты, частоты, постановка задач и перемещения по этапам. WA, TG, MAX — через таблицы и CRM</p>
+        </article>
+        <article class="skill-card">
+          <h3>Аналитика</h3>
+          <p>Roistat, Яндекс Метрика, Excel / Power BI. Изучение поведения пользователя, формы, брошенные заявки, отчёты и точки роста</p>
+        </article>
+        <article class="skill-card">
+          <h3>CJM и кастдевы</h3>
+          <p>Карта пути клиента, разбор отказов, гипотезы для тестов, скрипты продаж и правки сайта</p>
+        </article>
+        <article class="skill-card">
+          <h3>Tilda и HTML</h3>
+          <p>Посадочные, правка вёрстки, HTML-письма для менеджеров и создание типовых шаблонов рассылок</p>
+        </article>
+        <article class="skill-card">
+          <h3>ИИ-автоматизация</h3>
+          <p>Помощники для CRM, оркестрация контента, ТЗ разработчикам на подключение и создание сценариев работы</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="qualities" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-kicker">How I work</p>
+        <h2>Как работаю</h2>
+        <p>Качества, которые видны по результатам — не абстрактный список «стрессоустойчивости».</p>
+      </div>
+      <div class="qualities-list">
+        <article class="quality-item">
+          <strong>Системность воронок</strong>
+          <p>Свожу заявки из разных каналов в одну логику CRM, чтобы не было ручного переноса, «запоминания клиентов» и «потерянных» лидов</p>
+        </article>
+        <article class="quality-item">
+          <strong>Стратегия + техника</strong>
+          <p>Считаю, составляю и CJM и отчёты, подключаю интеграции: могу поставить задачи разработчикам, настроить таблицы и CRM при их интеграции</p>
+        </article>
+        <article class="quality-item">
+          <strong>Измеримость</strong>
+          <p>Фиксирую временные окна замеров и метрики до/после. Если эффективность не считали — так и пишу, без прикрас</p>
+        </article>
+        <article class="quality-item">
+          <strong>Меньше потерь на стыке</strong>
+          <p>Связываю маркетинг и продажи так, чтобы лиды не терялись между каналами и отделами. Сбои фиксирую и закрываю совместно с менеджерами</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="about-visual">
+        <div class="about-photo">
+          <!-- TILDA: DSC_7222 -->
+          <img src="assets/photos/about-7222.jpg" alt="Александр Бурнашев" width="640" height="850" />
+        </div>
+        <div class="about-side">
+          <img src="assets/photos/skill-analytics.jpg" alt="Работа с аналитикой трафика" width="640" height="400" />
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-head" style="margin-bottom: 1rem;">
+          <p class="section-kicker">About</p>
+          <h2>Обо мне</h2>
+        </div>
+        <p>
+          Специализация: CRM, retention и интернет-маркетинг в B2B и B2C.
+        </p>
+        <p>
+          В технической части собираю автоматизации и интеграции, пишу ТЗ разработчикам,
+          дизайнерам, копирайтерам, поддерживаю связку сайта и мессенджеров с CRM.
+        </p>
+        <p>
+          В стратегической — CJM, кастдевы, медиа-логика и BI для решений по трафику и воронке.
+        </p>
+        <p>
+          Среди недавних задач: рассылки из CRM в мессенджеры, ИИ-помощник на типовые
+          и нерабочие часы, конвейер статей под SEO. Подробности — на странице кейсов.
+        </p>
+        <p>Если интересуют подобные навыки — свяжитесь со мной, обсудим задачи.</p>
+        <div class="about-cta">
+          <a class="btn" href="https://t.me/Str1v1ng" target="_blank" rel="noopener">Связаться</a>
+        </div>
+        <div class="stack">
+          <span class="chip">amoCRM</span>
+          <span class="chip">YClients</span>
+          <span class="chip">Roistat</span>
+          <span class="chip">Яндекс Метрика</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">Notion</span>
+          <span class="chip">Tilda</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cases-preview" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-kicker">Selected work</p>
+        <h2>Три кейса с цифрами</h2>
+        <p>Короткий вход в проекты — полные Задача.</p>
+        <p class="section-sub">Решение на отдельной странице.</p>
+      </div>
+      <div class="cases-preview">
+        <a class="case-teaser" href="cases.html#case-1">
+          <span class="num">01</span>
+          <h3>Рассылки из CRM в мессенджеры</h3>
+          <p>Холодная 1%→5%, тёплая 7%→18%, ~67 ₽/ответ · 20 месяцев</p>
+        </a>
+        <a class="case-teaser" href="cases.html#case-2">
+          <span class="num">02</span>
+          <h3>ИИ-помощник в CRM</h3>
+          <p>~−30 чел.-часов/мес · ошибка ~1 из 28 диалогов</p>
+        </a>
+        <a class="case-teaser" href="cases.html#case-3">
+          <span class="num">03</span>
+          <h3>ИИ-оркестратор контента</h3>
+          <p>~70 ₽/статья вместо ~1500 ₽ · сайт, TenChat, Дзен, VK</p>
+        </a>
+      </div>
+      <p style="margin: 1.25rem 0 0;">
+        <a class="btn btn-ghost" href="cases.html">Открыть все кейсы</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <h2>Давайте обсудим задачи</h2>
+        <p>Удобнее всего написать в Telegram — отвечаю быстрее всего там.</p>
+        <div class="contact-actions">
+          <a class="btn" href="https://t.me/Str1v1ng" target="_blank" rel="noopener">Telegram @Str1v1ng</a>
+          <a class="btn btn-ghost" href="cases.html">Кейсы</a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:oscarank47@gmail.com">oscarank47@gmail.com</a>
+          <a href="tel:+79609999399">+7 (960) 999-93-99</a>
+          <a href="https://max.ru/u/f9LHodD0cOIZwxYpFkwWe8HQWuRvoDK35JdY7VhFQoffHDwEC_cFrOL-Yjg" target="_blank" rel="noopener">MAX</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">© Александр Бурнашев · CRM-маркетолог</div>
+  </footer>
+</body>
+</html>
